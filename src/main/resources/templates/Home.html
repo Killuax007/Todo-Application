@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html
+  th:replace="~{fragments/Base::Layout(~{::div})}"
+  xmlns:th="http://www.thymeleaf.org"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <title></title>
+
+    <meta content="" name="description" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+  </head>
+  <body>
+    <div class="banner">
+      <h2>Todo Application</h2>
+      <p>
+        A static website that performs basic TODO related operation like Create,
+        Read, Update,Delete
+      </p>
+      <div class="row">
+        <a
+          class="btn btn-outline-primary col"
+          role="button"
+          th:href="@{/create}"
+          >Create
+        </a>
+
+        <a
+          class="btn btn-outline-success col mx-3"
+          role="button"
+          th:href="@{/all}"
+          >GetTodos
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+.banner {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@font-face {
+  font-family: "Raleway";
+  src: url("../font/Raleway-Medium.ttf");
+}
+body {
+  font-family: "Raleway";
+}

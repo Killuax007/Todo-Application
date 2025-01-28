@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  th:replace="~{fragments/Base::Layout(~{::section})}"
+  xmlns:th="http://www.thymeleaf.org"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <div class="card mt-5 p-3">
+              <div
+                th:if="${message}"
+                th:classappend="${message.type}"
+                class="alert text-center"
+                role="alert"
+              >
+                <p th:text="${message.content}"></p>
+              </div>
+              <h2
+                class="text-center"
+                th:text="${todo.id == null ? 'Add Todo':'Edit Todo'}"
+              >
+                Create Todo
+              </h2>
+              <form
+                method="POST"
+                novalidate
+                th:action="@{${todo.id == null} ? '/submitTodo' : '/edit/'+ ${todo.id}}"
+                th:object="${todo}"
+              >
+                <div class="mb-3">
+                  <label class="form-label" for="title">Title</label>
+                  <input
+                    class="form-control"
+                    id="title"
+                    name="title"
+                    type="text"
+                    th:value="${todo.title}"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="exampleInputPassword1"
+                    >Description :
+                  </label>
+                  <input
+                    class="form-control"
+                    name="description"
+                    id="description"
+                    type="text"
+                    th:value="${todo.description}"
+                    required
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label"> Status : </label>
+                  <div th:each="status : ${statuses}">
+                    <input
+                      type="radio"
+                      class="form-check-input mx-2"
+                      th:field="*{status}"
+                      th:value="${status}"
+                      th:text="${status}"
+                      required
+                    />
+                  </div>
+                </div>
+                <button
+                  class="btn btn-outline-primary"
+                  type="submit"
+                  th:text="${todo.id == null ?  'Create' : 'Update'}"
+                ></button>
+                <button class="btn btn-outline-danger" type="reset">
+                  cancel
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
